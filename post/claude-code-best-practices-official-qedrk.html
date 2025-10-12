@@ -26,9 +26,9 @@
 <meta property="og:site_name" content="一课一练的博客">
 <meta property="og:description" content="Claude Code 最佳实践（官方）今年 4 月，Anthropic 正式发布了 Claude Code —— 一个专为代理式编程（agentic coding）设计的命令行工具。 作为 Anthropic 内部研究项目的成果，Claude Code 为工程师和研究人员提供了一种更原生的方式，将 Claude 集成到日常编程工作流中。 这篇来自 Anthropic 工程团队的技术文档[1]">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://127.0.0.1:56173/assets/pixabay-9862220-20251007172103-zskm3z8.png">
-<meta property="og:image" content="http://127.0.0.1:56173/assets/image-20251012152401-sp3giew.png">
-<meta property="og:image" content="http://127.0.0.1:56173/assets/image-20251012152414-nwyzvsg.png">
+<meta property="og:image" content="https://s2.loli.net/2025/10/12/OYLZkXeRxbH56N8.jpg">
+<meta property="og:image" content="https://s2.loli.net/2025/10/12/XGBspfo6k1gzHqQ.png">
+<meta property="og:image" content="https://s2.loli.net/2025/10/12/Y8iIaEbTOLj53MB.png">
 <meta property="og:image" content="https://mmbiz.qpic.cn/sz_mmbiz_jpg/2niaYkVLHpnGJpw7IUaC686ibWdgEBbSiaINCGsEfm2bbYFLWnibRP1yqY5ib5YawfSq1cjhZrRA2l1ibkVVJmlwrp8w/640?wx_fmt=other&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=2">
 <meta property="og:image" content="https://mmbiz.qpic.cn/sz_mmbiz_png/2niaYkVLHpnGJpw7IUaC686ibWdgEBbSiaIaCdwEw5gaFBV1RibOjIQ2Leo2DZRR8gPYcWzaOKh0P7RuLv3QFcElMA/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=3">
 <meta property="og:image" content="https://mmbiz.qpic.cn/sz_mmbiz_jpg/2niaYkVLHpnGJpw7IUaC686ibWdgEBbSiaIeib9O3cCczOKdANqY2NZadUISUAedDN5GsParo27eL5T8tKRVO9Xulg/640?wx_fmt=other&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=4">
@@ -38,7 +38,7 @@
 <meta property="article:modified_time" content="2025-10-12T06:26:56.000Z">
 <meta property="article:author" content="一课一练">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://127.0.0.1:56173/assets/pixabay-9862220-20251007172103-zskm3z8.png">
+<meta name="twitter:image" content="https://s2.loli.net/2025/10/12/OYLZkXeRxbH56N8.jpg">
 
 
 <link rel="canonical" href="https://wangxi-lab.github.io/post/claude-code-best-practices-official-qedrk">
@@ -265,7 +265,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p><img src="http://127.0.0.1:56173/assets/pixabay-9862220-20251007172103-zskm3z8.png" alt="image"></p>
+    <div class="post-body" itemprop="articleBody"><p><img src="https://s2.loli.net/2025/10/12/OYLZkXeRxbH56N8.jpg" alt="image"></p>
 <h1 id="Claude-Code-最佳实践（官方）"><a href="#Claude-Code-最佳实践（官方）" class="headerlink" title="Claude Code 最佳实践（官方）"></a>Claude Code 最佳实践（官方）</h1><p>今年 4 月，Anthropic 正式发布了 <strong>Claude Code</strong> —— 一个专为代理式编程（agentic coding）设计的命令行工具。</p>
 <p>作为 Anthropic 内部研究项目的成果，Claude Code 为工程师和研究人员提供了一种更原生的方式，将 Claude 集成到日常编程工作流中。</p>
 <p>这篇来自 Anthropic 工程团队的技术文档<sup>[1]</sup> 推荐给对大家，它系统总结了内外部工程师在各种代码库、编程语言和开发环境中使用 Claude Code 的有效模式。</p>
@@ -310,7 +310,7 @@
 <h3 id="b-调优你的-CLAUDE-md-文件"><a href="#b-调优你的-CLAUDE-md-文件" class="headerlink" title="b. 调优你的 CLAUDE.md 文件"></a>b. 调优你的 <code>CLAUDE.md</code> 文件</h3><p>你的 <code>CLAUDE.md</code> 文件会成为 Claude 提示的一部分，因此应该像任何频繁使用的提示一样进行优化。一个常见的错误是添加大量内容而没有迭代其有效性。花时间进行实验，确定什么能从模型中产生最佳的指令遵循效果。</p>
 <p>你可以手动向 <code>CLAUDE.md</code>​ 添加内容，或者按 <code>#</code>​ 键给 Claude 一个指令，它会自动将其合并到相关的 <code>CLAUDE.md</code>​ 中。许多工程师在编码时频繁使用 <code>#</code>​ 来记录命令、文件和风格指南，然后在提交中包含 <code>CLAUDE.md</code> 的更改，以便团队成员也能受益。</p>
 <p>在 Anthropic，我们偶尔会用 prompt improver<sup>[4]</sup> 来优化 <code>CLAUDE.md</code> 文件，并经常调整指令（例如，用 “IMPORTANT” 或 “YOU MUST” 来强调）以提高遵循度。</p>
-<p><img src="http://127.0.0.1:56173/assets/image-20251012152401-sp3giew.png" alt="image"></p>
+<p><img src="https://s2.loli.net/2025/10/12/XGBspfo6k1gzHqQ.png" alt="image"></p>
 <p>‍</p>
 <h3 id="c-管理-Claude-的工具白名单"><a href="#c-管理-Claude-的工具白名单" class="headerlink" title="c. 管理 Claude 的工具白名单"></a>c. 管理 Claude 的工具白名单</h3><p>默认情况下，Claude Code 对任何可能修改你系统的操作都会请求许可：文件写入、许多 bash 命令、MCP 工具等。我们设计 Claude Code 时采用了这种刻意保守的方法，以优先考虑安全性。你可以自定义白名单，以允许你知道是安全的其他工具，或者允许那些易于撤销的潜在不安全工具（例如，文件编辑、<code>git commit</code>）。</p>
 <p>有四种方式来管理允许的工具：</p>
@@ -386,7 +386,7 @@
 <li>​<strong>当你满意时，让 Claude 提交</strong>。</li>
 </ol>
 <p>像人类一样，Claude 的输出通过迭代往往会显著改善。虽然第一个版本可能不错，但经过2-3次迭代后，它通常会看起来好得多。给 Claude 工具来看它的输出，以获得最佳结果。</p>
-<p><img src="http://127.0.0.1:56173/assets/image-20251012152414-nwyzvsg.png" alt="image"></p>
+<p><img src="https://s2.loli.net/2025/10/12/Y8iIaEbTOLj53MB.png" alt="image"></p>
 <h3 id="d-安全的-YOLO-模式"><a href="#d-安全的-YOLO-模式" class="headerlink" title="d. 安全的 YOLO 模式"></a>d. 安全的 YOLO 模式</h3><p>你可以使用 <code>claude --dangerously-skip-permissions</code> 来绕过所有权限检查，让 Claude 不间断地工作直到完成，而不是监督它。这对于修复 lint 错误或生成样板代码等工作流非常有效。</p>
 <p>让 Claude 运行任意命令是有风险的，可能导致数据丢失、系统损坏，甚至数据泄露（例如，通过提示注入攻击）。为了最小化这些风险，请在没有互联网访问的容器中使用 <code>--dangerously-skip-permissions</code>​。你可以参考这个使用 Docker Dev Containers 的参考实现​<sup>[7]</sup>。</p>
 <h3 id="e-代码库问答"><a href="#e-代码库问答" class="headerlink" title="e. 代码库问答"></a>e. 代码库问答</h3><p>在熟悉一个新的代码库时，使用 Claude Code 进行学习和探索。你可以向 Claude 提出与你在结对编程时会问项目中其他工程师的同类问题。Claude 可以智能地搜索代码库来回答一般性问题，例如：</p>
