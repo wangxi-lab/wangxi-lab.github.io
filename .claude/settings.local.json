@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(hexo new:*)",
+      "Bash(hexo clean)",
+      "Bash(hexo generate:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
