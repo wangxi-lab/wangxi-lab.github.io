@@ -7,7 +7,13 @@ comments: true
 toc: true
 ---
 
+## 简介
 
+这是关于 Claude Code 最佳实践。本文将分享我使用 Claude 的一些心得和技巧。
+
+Claude 是一个强大的 AI 助手，可以帮助你完成各种任务...
+
+<!-- more -->
 
 ![image](https://s2.loli.net/2025/10/12/OYLZkXeRxbH56N8.jpg)
 
