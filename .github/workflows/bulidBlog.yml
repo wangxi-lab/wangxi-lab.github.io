@@ -2,7 +2,7 @@ name: wangxi's Blog CI/CD # 脚本 workflow 名称
 
 on:
   push:
-    branches: [gh-pages] # 当监测 main,master 的 push
+    branches: [gh-pages,main] # 当监测 main,master 的 push
 
 jobs:
   blog: # 任务名称
