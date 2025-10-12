@@ -9,7 +9,7 @@ toc: true
 
 
 
-![image](/source/images/pixabay-9862220-20251007172103-zskm3z8.png)
+![image](http://127.0.0.1:56173/assets/pixabay-9862220-20251007172103-zskm3z8.png)
 
 # Claude Code 最佳实践（官方）
 
@@ -90,7 +90,9 @@ Claude Code 是一个 Agentic Coding 助手，它会自动将上下文拉取到�
 
 在 Anthropic，我们偶尔会用 prompt improver<sup>[4]</sup> 来优化 `CLAUDE.md` 文件，并经常调整指令（例如，用 "IMPORTANT" 或 "YOU MUST" 来强调）以提高遵循度。
 
-![图片](https://mmbiz.qpic.cn/sz_mmbiz_png/2niaYkVLHpnGJpw7IUaC686ibWdgEBbSiaI8jXk4LoiblJFFBu0oLevqqSjtsfdrxsCP2ovveyFAlKaUziakRSRsWVw/640?wx_fmt=png&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=0)
+![image](http://127.0.0.1:56173/assets/image-20251012152401-sp3giew.png)
+
+‍
 
 ### c. 管理 Claude 的工具白名单
 
@@ -202,7 +204,7 @@ Claude Code 不强加特定的工作流，让你有灵活性按自己喜欢的�
 
 像人类一样，Claude 的输出通过迭代往往会显著改善。虽然第一个版本可能不错，但经过2-3次迭代后，它通常会看起来好得多。给 Claude 工具来看它的输出，以获得最佳结果。
 
-![图片](https://mmbiz.qpic.cn/sz_mmbiz_jpg/2niaYkVLHpnGJpw7IUaC686ibWdgEBbSiaIWzJ8YD9WXNvJ5SibYyLnHQqWm1QI5lw8QsPPrsd0xY1MmH4gvfAhBCg/640?wx_fmt=other&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=1)
+![image](http://127.0.0.1:56173/assets/image-20251012152414-nwyzvsg.png)
 
 ### d. 安全的 YOLO 模式
 
