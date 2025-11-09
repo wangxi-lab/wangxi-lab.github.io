@@ -4,7 +4,8 @@
       "Bash(hexo new:*)",
       "Bash(hexo clean)",
       "Bash(hexo generate:*)",
-      "Bash(hexo server:*)"
+      "Bash(hexo server:*)",
+      "Bash(npm install:*)"
     ],
     "deny": [],
     "ask": []

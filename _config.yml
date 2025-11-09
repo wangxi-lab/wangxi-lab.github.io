@@ -114,3 +114,11 @@ theme: next                    # 使用的主题名称
 ## 注意: 使用 GitHub Actions 自动部署时，这里不需要配置
 deploy:
   type: ''                     # 部署类型 (git, heroku, rsync 等)，留空表示不使用 hexo deploy
+
+# ==================== 搜索配置 ====================
+# Search
+search:
+  path: search.xml
+  field: post
+  content: true
+  format: html
