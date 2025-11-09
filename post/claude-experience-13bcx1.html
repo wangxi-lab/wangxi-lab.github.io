@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.0.0">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.0.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/aislogo-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/aislogo-16x16.png">
+  <link rel="mask-icon" href="/images/aislogo.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -16,8 +17,10 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"wangxi-lab.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wangxi-lab.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"language":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
     <meta name="description" content="这篇记录主要分享我使用 Claude Code 从零开发一个前端小项目的完整过程，包括环境安装、令牌配置、需求分析、代码开发与优化技巧。文末附上可访问的在线体验地址。">
 <meta property="og:type" content="article">
@@ -62,14 +65,20 @@
 
 
   
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
 <script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
 
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
 
 
 
 
+
+  <script src="/js/third-party/pace.js" defer></script>
 
 
   
@@ -109,6 +118,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -117,11 +127,37 @@
 
 <nav class="site-nav">
   <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </header>
         
@@ -147,6 +183,8 @@
 
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="一课一练"
+      src="/images/avatar.png">
   <p class="site-author-name" itemprop="name">一课一练</p>
   <div class="site-description" itemprop="description">AI, blog</div>
 </div>
@@ -200,7 +238,7 @@
     <link itemprop="mainEntityOfPage" href="https://wangxi-lab.github.io/post/claude-experience-13bcx1.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.png">
       <meta itemprop="name" content="一课一练">
     </span>
 
@@ -270,7 +308,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p><img src="https://s2.loli.net/2025/10/12/zWIX3rVpOluxtiL.jpg" alt="image"></p>
+    <div class="post-body" itemprop="articleBody"><p><img data-src="https://s2.loli.net/2025/10/12/zWIX3rVpOluxtiL.jpg" alt="image"></p>
 <h1 id="Claude使用体验"><a href="#Claude使用体验" class="headerlink" title="Claude使用体验"></a>Claude使用体验</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>这篇记录主要分享我使用 Claude Code 从零开发一个前端小项目的完整过程，包括环境安装、令牌配置、需求分析、代码开发与优化技巧。文末附上可访问的在线体验地址。</p>
 <p>‍</p>
 <!-- more -->
@@ -336,9 +374,9 @@
 </tbody></table>
 <p>‍</p>
 <p>我选择使用 <strong><a target="_blank" rel="noopener" href="https://duckcoding.com/register?aff=dzDG">DuckCode</a></strong>，整体使用体验还不错，它支持的模型也比较多，这样我在一个平台就能体验到各个公司的大模型了 （不过 Deepseek 不能使用）</p>
-<p><img src="https://s2.loli.net/2025/10/12/VvHLJk5rqTWwiZe.png" alt="image"></p>
+<p><img data-src="https://s2.loli.net/2025/10/12/VvHLJk5rqTWwiZe.png" alt="image"></p>
 <p>在平台完成充值后，创建令牌，这个令牌相当于使用 Claude 的密钥</p>
-<p><img src="https://s2.loli.net/2025/10/12/jIMSEVhedFlBAzN.png" alt="image"></p>
+<p><img data-src="https://s2.loli.net/2025/10/12/jIMSEVhedFlBAzN.png" alt="image"></p>
 <h2 id="2-2-Claude-安装"><a href="#2-2-Claude-安装" class="headerlink" title="2.2 Claude 安装"></a>2.2 Claude 安装</h2><h3 id="Windows-版本教程"><a href="#Windows-版本教程" class="headerlink" title="Windows 版本教程"></a>Windows 版本教程</h3><h4 id="系统要求"><a href="#系统要求" class="headerlink" title="系统要求"></a>系统要求</h4><ul>
 <li>Windows 10 或 Windows 11</li>
 <li>Node.js 18+</li>
@@ -401,7 +439,7 @@
 <h2 id="2-3-需求分析"><a href="#2-3-需求分析" class="headerlink" title="2.3 需求分析"></a>2.3 需求分析</h2><p><strong>准备需求：</strong></p>
 <p>我在知乎上找到一篇高赞的回答 <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/19888447/answer/1930799480401293785">(99+ 封私信 &#x2F; 45 条消息) 如何提高自制力？ - 知乎</a>，主要介绍的是 <code>基于CTDP和RSIP两代自控技术，通过科学的行为管理机制，帮助用户实现可持续的自制力提升</code>，根据这个回答，我准备实现一个简单的 WEB 端自制力提升工具。</p>
 <p>先把这篇文档制作成 pdf，然后我使用 GPT5 根据这篇文档设计一个 web 网站</p>
-<p><img src="https://s2.loli.net/2025/10/12/jptTh7OJEzSg3PV.png" alt="image"></p>
+<p><img data-src="https://s2.loli.net/2025/10/12/jptTh7OJEzSg3PV.png" alt="image"></p>
 <p>‍</p>
 <p><strong>生成计划清单：</strong></p>
 <p>接下来我把 GPT 分析的产品需求放到本地文件中，内容如下，然后我告诉 Claude code：根据 projectbrief.md 文件中的内容，<code>设计一个名为 **「自律重构者」（Self-Optimize）** 的Web工具</code>​，生成一个可供 AI 开发执行的计划清单，然后输出到 <code>PLAN.md</code>​ 文件。•<strong>格式是不可协商的：</strong>  它必须是一个 Markdown 清单，其中<strong>每一项都是一个完整、可执行的、用于 AI 下一步操作的提示</strong></p>
@@ -436,17 +474,17 @@
 <p>•<strong>activeContext.md:</strong>  这是“当前记忆”。它追踪你<strong>当下</strong>正在做什么以及下一步计划。</p>
 <p>•<strong>progress.md:</strong>  整体项目进度。记录已完成和未完成的部分。</p>
 <h3 id="2-4-2-代码开发"><a href="#2-4-2-代码开发" class="headerlink" title="2.4.2 代码开发"></a>2.4.2 代码开发</h3><p>接下来代码开发就比较简单了，根据前面的生成的计划清单，让 Claude code 执行每个子任务，需要注意的是让 Claude code 执行任务时，采用小步快走的方式，让 AI 以一个个最小的功能单元去写代码，写完成后最好让他自己执行编译检查，必要时需要启动服务，检查是否有语法错误、运行错误，小步快走能让 AI 及时发现问题进行改进。</p>
-<p><img src="https://s2.loli.net/2025/10/12/L9yRHNlBs1ZtVap.png" alt="image"></p>
+<p><img data-src="https://s2.loli.net/2025/10/12/L9yRHNlBs1ZtVap.png" alt="image"></p>
 <p>‍</p>
 <p>最后我用了 4 小时，花费 30￥，生成 68 个文件， 16585 行代码。</p>
-<p><img src="https://s2.loli.net/2025/10/12/oPBj87zJgAZE9eY.png" alt="image"></p>
+<p><img data-src="https://s2.loli.net/2025/10/12/oPBj87zJgAZE9eY.png" alt="image"></p>
 <p>消费记录</p>
-<p><img src="https://s2.loli.net/2025/10/12/leRhLgm6vObqMzJ.png" alt="image"></p>
+<p><img data-src="https://s2.loli.net/2025/10/12/leRhLgm6vObqMzJ.png" alt="image"></p>
 <p>期间我一共介入了 2 次修改代码，一次是生成的代码缺少分号，导致运行失败，这个问题是比较低级的错误，Claude code 竟然犯了这种错误；还有一次是生成的页面样式不正确，主页不能铺满全屏，我提示它进行修改，但它始终修改不正确，这类界面样式问题对它来说确实不好处理，后面看看能不能通过 MCP 让它自己到浏览器中去检查、调试</p>
 <h2 id="2-5-实现效果"><a href="#2-5-实现效果" class="headerlink" title="2.5 实现效果"></a>2.5 实现效果</h2><p>整体实现的完成度还是挺高的，整个功能流程是能打通的。不过发现了在某个下钻功能里，没有实现完整的功能，看了一下，主要还是需求没有考虑到这点，AI 实现的时候也只是实现了个假按钮，这也侧面说明了让 AI 做事，得把需求写清晰。</p>
 <p>体验地址：<a target="_blank" rel="noopener" href="http://47.94.5.222/">首页 - 自律重构者</a></p>
 <p>‍</p>
-<p><img src="https://s2.loli.net/2025/10/12/RqCoBD9pfrYtyzj.png" alt="image"></p>
+<p><img data-src="https://s2.loli.net/2025/10/12/RqCoBD9pfrYtyzj.png" alt="image"></p>
 <p>‍</p>
 <h1 id="3-Claude-使用技巧"><a href="#3-Claude-使用技巧" class="headerlink" title="3 Claude 使用技巧"></a>3 Claude 使用技巧</h1><p>‍</p>
 <p><strong>将 Claude Code 视为一位才华横溢但健忘的专家。</strong>  它能力超群，但每隔几分钟就会忘记你是谁、你在做什么。你最重要的工作就是为它构建一个完美的“外部大脑”，让它能随时“恢复记忆”并投入工作。</p>
@@ -565,7 +603,7 @@
       </span>
     </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
     </div>
@@ -582,6 +620,7 @@
     <i class="fa fa-arrow-up fa-lg"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
 
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
