@@ -1,0 +1,361 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"> <head><meta charset="utf-8"><script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          document.documentElement.setAttribute(
+            'data-theme',
+            stored === 'light' || stored === 'dark' ? stored : 'dark',
+          );
+        } catch (error) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script><meta name="viewport" content="width=device-width, initial-scale=1"><title>Claude使用体验 · 一课一练</title><meta name="description" content="这篇记录主要分享我使用 Claude Code 从零开发一个前端小项目的完整过程，包括环境安装、令牌配置、需求分析、代码开发与优化技巧。文末附上可访问的在线体验地址。"><meta name="author" content="一课一练"><meta name="theme-color" content="#070A12"><link rel="canonical" href="https://wangxi-lab.github.io/posts/claude-experience/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png"><link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png"><meta property="og:title" content="Claude使用体验 · 一课一练"><meta property="og:description" content="这篇记录主要分享我使用 Claude Code 从零开发一个前端小项目的完整过程，包括环境安装、令牌配置、需求分析、代码开发与优化技巧。文末附上可访问的在线体验地址。"><meta property="og:type" content="article"><meta property="og:url" content="https://wangxi-lab.github.io/posts/claude-experience/"><meta property="og:locale" content="zh_CN"><meta name="twitter:card" content="summary"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Claude使用体验","description":"这篇记录主要分享我使用 Claude Code 从零开发一个前端小项目的完整过程，包括环境安装、令牌配置、需求分析、代码开发与优化技巧。文末附上可访问的在线体验地址。","datePublished":"2025-10-12T12:39:21.000Z","dateModified":"2025-10-12T15:32:52.000Z","inLanguage":"zh-CN","author":{"@type":"Person","name":"一课一练","url":"https://wangxi-lab.github.io"},"mainEntityOfPage":"https://wangxi-lab.github.io/posts/claude-experience/"}</script><link rel="stylesheet" href="/_astro/_slug_.DKg6DjRF.css"><script type="module" src="/_astro/page.DSySmlfp.js"></script></head> <body> <a class="skip" href="#main">跳到正文</a>  <div class="page"> <header class="nav" data-nav> <a class="brand" href="/"> <img src="/favicon.svg" width="26" height="26" alt=""> <span>一课一练</span> </a> <nav class="nav-links" aria-label="页内导航"> <a href="/#practice" data-nav-link> 一课 </a><a href="/#writing" data-nav-link class="is-active" aria-current="page"> 文章 </a><a href="/#lab" data-nav-link> 项目 </a><a href="/#about" data-nav-link> 关于 </a> </nav> <div class="nav-tools"> <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换浅色" aria-pressed="false"> <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"> <circle cx="12" cy="12" r="4"></circle> <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"></path> </svg> <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"> <path d="M16 3.2A8.5 8.5 0 1 0 20.8 14 7 7 0 0 1 16 3.2z"></path> </svg> </button> <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="打开菜单"> <span></span> <span></span> <span></span> </button> </div> </header>  <main id="main" class="article-wrap"> <div class="wrap post-layout"> <article> <a class="back" href="/">← 返回首页</a> <h1 class="page-title">Claude使用体验</h1> <p class="article-meta"> <time datetime="2025-10-12T12:39:21.000Z">2025年10月12日</time> <span>更新于 2025年10月12日</span> <span>约 21 分钟</span> <span>AI</span> </p> <ul class="tags"> <li>Claude</li><li>大模型</li> </ul> <p class="excerpt-lead">这篇记录主要分享我使用 Claude Code 从零开发一个前端小项目的完整过程，包括环境安装、令牌配置、需求分析、代码开发与优化技巧。文末附上可访问的在线体验地址。</p> <div class="prose">  <p><img src="https://s2.loli.net/2025/10/12/zWIX3rVpOluxtiL.jpg" alt="image"></p>
+<h2 id="claude使用体验">Claude使用体验</h2>
+<h3 id="简介">简介</h3>
+<p>这篇记录主要分享我使用 Claude Code 从零开发一个前端小项目的完整过程，包括环境安装、令牌配置、需求分析、代码开发与优化技巧。文末附上可访问的在线体验地址。</p>
+<p>‍</p>
+<!-- more -->
+<h2 id="引言">引言</h2>
+<p>随着大模型的快速发展，AI 辅助编码取得巨大的进步，作为一名程序员，紧跟时代，必须要学习 AI，使用 AI 编码，当前最大强大的编码大模型非 Claude 莫属，趁国庆放假体验一下 Claude Code</p>
+<p>‍</p>
+<h2 id="1-claude-是什么">1. Claude 是什么</h2>
+<p>Claude 是由 Anthropic 开发的最先进的大型语言模型系列，Claude Code 是当前最强大的编码大模型，Claude Code 为您做什么？下面介绍来自官网介绍：</p>
+<ul>
+<li>​<strong>从描述构建功能</strong>：用简单的英语告诉 Claude 您想要构建什么。它会制定计划、编写代码并确保其正常工作。</li>
+<li>​<strong>调试和修复问题</strong>：描述一个错误或粘贴错误消息。Claude Code 将分析您的代码库，识别问题并实施修复。</li>
+<li>​<strong>导航任何代码库</strong>​：询问关于您团队代码库的任何问题，并获得深思熟虑的答案。Claude Code 保持对整个项目结构的感知，可以从网络上找到最新信息，并且通过 <a href="https://docs.claude.com/zh-CN/docs/claude-code/mcp">MCP</a> 可以从外部数据源（如 Google Drive、Figma 和 Slack）获取信息。</li>
+<li><strong>自动化繁琐任务</strong>：修复复杂的 lint 问题、解决合并冲突并编写发布说明。在您的开发机器上通过单个命令完成所有这些，或在 CI 中自动完成。</li>
+</ul>
+<p>当前 Claude Code 有 2 个强大的模型：Claude Sonnet 4.5 和 Claude Opus 4.1。Claude 4 Opus 和 Claude 4 Sonnet 在基础代码生成能力上相差不大，它们的核心区别在于应用场景和运行特性。Opus 是面向复杂编程挑战的”耐力型选手”，具有更强的持久性和系统级编程能力；而 Sonnet 则是日常编程的”高效助手”，提供更快的响应和更高的性价比。</p>
+<h2 id="2-使用-claude-开发一个项目">2. 使用 Claude 开发一个项目</h2>
+<p>为了体验 Claude，我准备使用 Claude Code 开发一个简单的前端项目，从需求分析到代码开发都由 Claude 完成。</p>
+<h3 id="21-claude-资源获取">2.1 Claude 资源获取</h3>
+<p>Claude 当前对中国地区进行封禁，国内有很多大模型中转站，原理就是中转站购买大量 Claude 账号，然后把 Claude 提供的 API 中转给大家使用，它在中间收取差价。</p>
+<p>下面是网友总结的 A 社在增加使用限制后, 站内部分热门 Claude code 中转现状及应对措施整理表格</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>服务商</th><th>涨价</th><th>核心调整内容</th><th>备注</th></tr></thead><tbody><tr><td><strong>88code</strong></td><td>涨价</td><td>按量从 29.9 用 150 涨到 68 用 200，涨幅 1.7 倍。免费套餐倍率改为(8-24 点 10 倍率, 0-8 点 2 倍率)。包月套餐提升额度上限，取消每小时恢复额度，每天重置次数由 1 次改为 2 次。按量套餐限制使用数量。</td><td>变化比较多，大家仔细看。非免费套餐的倍率是否修改未知，欢迎补充</td></tr><tr><td><strong>DuckCode</strong></td><td>已涨</td><td>CC 倍率由 (闲时 0.2, 忙时 0.4) 上调至 (闲时 1.3, 忙时 1.5) (涨幅 6.5/3.75 倍)。</td><td>Codex 模型倍率未调整。增加了低价 2API 分组</td></tr><tr><td><strong>FoxCode</strong></td><td>已涨</td><td>CC 倍率上调 ​<strong>5~6 倍</strong>​，Codex 倍率上调 ​<strong>1.5 倍</strong>。</td><td>Codex 应该没新限制吧?</td></tr><tr><td><strong>Privnode</strong></td><td>已涨</td><td>CC 倍率 0.35(后备分组倍率 0.7)，Codex 为 0.2 (标注稳定)。</td><td>据 N 佬自己说就算涨价上限应该是 0.6(就是 2 倍), 取消 0.15cc 特价倍率，取消 0.3 倍率</td></tr><tr><td><strong>packycode</strong></td><td>已涨</td><td>强制将所有包月套餐转为按量套餐。倍率 1</td><td>有补偿详见转换规则(见表格后)。</td></tr><tr><td><strong>IKunCode</strong></td><td>已涨</td><td>强制将包月套餐转为按量套餐，原按量套餐保持，倍率(闲时 1.1, 忙时 1.2)。</td><td>提供退款或转换补偿方案，新增了 Codex 0.2 倍率测试。</td></tr></tbody></table>
+<p>‍</p>
+<p>我选择使用 <strong><a href="https://duckcoding.com/register?aff=dzDG">DuckCode</a></strong>，整体使用体验还不错，它支持的模型也比较多，这样我在一个平台就能体验到各个公司的大模型了 （不过 Deepseek 不能使用）</p>
+<p><img src="https://s2.loli.net/2025/10/12/VvHLJk5rqTWwiZe.png" alt="image"></p>
+<p>在平台完成充值后，创建令牌，这个令牌相当于使用 Claude 的密钥</p>
+<p><img src="https://s2.loli.net/2025/10/12/jIMSEVhedFlBAzN.png" alt="image"></p>
+<h3 id="22-claude-安装">2.2 Claude 安装</h3>
+<h4 id="windows-版本教程">Windows 版本教程</h4>
+<h5 id="系统要求">系统要求</h5>
+<ul>
+<li>Windows 10 或 Windows 11</li>
+<li>Node.js 18+</li>
+<li>网络连接</li>
+</ul>
+<h5 id="1-安装-nodejs">1. 安装 Node.js</h5>
+<p>访问 <a href="https://nodejs.cn/download/current">https://nodejs.cn/download/current</a>，进入 Node.JS 官网，点击最新版本，选择对应的操作系统和版本下载即可</p>
+<p>下载后双击安装，之后一直点击下一步。安装完成后，打开 CMD 窗口，执行命令验证安装：</p>
+<pre class="astro-code github-dark" style="color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>node -v</span></span></code></pre>
+<h5 id="2-安装-claude-code">2. 安装 Claude Code</h5>
+<p>打开命令提示符 (CMD) 或 PowerShell，运行：</p>
+<pre class="astro-code github-dark" style="color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>npm install -g @anthropic-ai/claude-code</span></span></code></pre>
+<h5 id="3-验证安装">3. 验证安装</h5>
+<pre class="astro-code github-dark" style="color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>claude --version</span></span></code></pre>
+<h5 id="4-配置-api">4. 配置 API</h5>
+<h6 id="41-获取-auth-token">4.1 获取 Auth Token</h6>
+<p>访问 <a href="https://duckcoding.com/console/token">DuckCoding 控制台</a> 进行以下操作：</p>
+<ul>
+<li>点击「添加令牌」</li>
+<li><strong>令牌分组请选择：Claude Code 专用（务必选择此分组，否则无法使用）</strong></li>
+<li>令牌名称：随意填写</li>
+<li>额度建议：设置为无限额度</li>
+<li>其他选项保持默认</li>
+</ul>
+<h6 id="42-配置环境变量">4.2 配置环境变量</h6>
+<p>重要提示：请将下方的 sk-xxx 替换为您在 <a href="https://duckcoding.com/console/token">https://duckcoding.com/console/token</a> 生成的 Claude Code 专用 API 密钥！</p>
+<h6 id="方法一图形化配置推荐永久生效">方法一：图形化配置（推荐，永久生效）</h6>
+<ol>
+<li>右键点击 “此电脑” → 选择 “属性”</li>
+<li>点击 “高级系统设置”</li>
+<li>在 “系统属性” 窗口中点击 “环境变量”</li>
+<li>⭐ 重要：在 “系统变量” 部分点击 “新建”（多人共享电脑可选择 “用户变量”）</li>
+<li>添加以下两个变量：</li>
+<li>• 变量名：<code>ANTHROPIC_AUTH_TOKEN</code>，变量值：您的 API 密钥</li>
+<li>• 变量名：<code>ANTHROPIC_BASE_URL</code>​，变量值：<code>https://jp.duckcoding.com</code></li>
+<li>点击 “确定” 保存</li>
+</ol>
+<h6 id="方法二powershell永久设置">方法二：PowerShell（永久设置）</h6>
+<pre class="astro-code github-dark" style="color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>[Environment]::SetEnvironmentVariable("ANTHROPIC_AUTH_TOKEN", "sk-xxx", "User")</span></span>
+<span class="line"><span>[Environment]::SetEnvironmentVariable("ANTHROPIC_BASE_URL", "https://jp.duckcoding.com", "User")</span></span></code></pre>
+<h6 id="方法三命令提示符永久设置">方法三：命令提示符（永久设置）</h6>
+<pre class="astro-code github-dark" style="color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>setx ANTHROPIC_AUTH_TOKEN "sk-xxx"</span></span>
+<span class="line"><span>setx ANTHROPIC_BASE_URL "https://jp.duckcoding.com"</span></span></code></pre>
+<p><strong>注意：</strong>  永久设置后需要重启终端才能生效。推荐使用永久配置方式。</p>
+<h5 id="5-启动-claude-code">5. 启动 Claude Code</h5>
+<p>配置完成后，先进入到工程目录：</p>
+<pre class="astro-code github-dark" style="color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cd your-project-folder</span></span></code></pre>
+<p>然后，运行以下命令启动：</p>
+<pre class="astro-code github-dark" style="color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>claude</span></span></code></pre>
+<p><strong>首次启动后需要先进行主题的选择等操作：</strong></p>
+<ul>
+<li>选择喜欢的主题（回车）</li>
+<li>确认安全须知（回车）</li>
+<li>使用默认 Terminal 配置（回车）</li>
+<li>信任工作目录（回车）</li>
+<li>开始编程！🚀</li>
+</ul>
+<h3 id="23-需求分析">2.3 需求分析</h3>
+<p><strong>准备需求：</strong></p>
+<p>我在知乎上找到一篇高赞的回答 <a href="https://www.zhihu.com/question/19888447/answer/1930799480401293785">(99+ 封私信 / 45 条消息) 如何提高自制力？ - 知乎</a>，主要介绍的是 <code>基于CTDP和RSIP两代自控技术，通过科学的行为管理机制，帮助用户实现可持续的自制力提升</code>，根据这个回答，我准备实现一个简单的 WEB 端自制力提升工具。</p>
+<p>先把这篇文档制作成 pdf，然后我使用 GPT5 根据这篇文档设计一个 web 网站</p>
+<p><img src="https://s2.loli.net/2025/10/12/jptTh7OJEzSg3PV.png" alt="image"></p>
+<p>‍</p>
+<p><strong>生成计划清单：</strong></p>
+<p>接下来我把 GPT 分析的产品需求放到本地文件中，内容如下，然后我告诉 Claude code：根据 projectbrief.md 文件中的内容，<code>设计一个名为 **「自律重构者」（Self-Optimize）** 的Web工具</code>​，生成一个可供 AI 开发执行的计划清单，然后输出到 <code>PLAN.md</code>​ 文件。•<strong>格式是不可协商的：</strong>  它必须是一个 Markdown 清单，其中<strong>每一项都是一个完整、可执行的、用于 AI 下一步操作的提示</strong></p>
+<pre class="astro-code github-dark" style="color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#E1E4E8">项目介绍：</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">基于文档中的CTDP与RSIP技术框架，设计一个名为 </span><span style="color:#E1E4E8;font-weight:bold">**「自律重构者」（Self-Optimize）**</span><span style="color:#E1E4E8"> 的Web工具，产品功能架构如下：</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold"># 自制力管理工具 - 产品设计方案</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">## 一、产品概述</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8;font-weight:bold">**产品名称：**</span><span style="color:#E1E4E8"> 自律重构者</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8;font-weight:bold">**核心理念：**</span><span style="color:#E1E4E8"> 基于CTDP和RSIP两代自控技术，通过科学的行为管理机制，帮助用户实现可持续的自制力提升。</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">---</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">## 二、核心功能模块</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">### 1. </span><span style="color:#E1E4E8;font-weight:bold">**神圣座位管理模块**</span><span style="color:#79B8FF;font-weight:bold"> (基于CTDP)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">#### 功能点：</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8;font-weight:bold"> **座位创建**</span><span style="color:#E1E4E8">：用户可创建多个"神圣座位"（学习、运动、阅读等）</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8;font-weight:bold"> **任务链管理**</span><span style="color:#E1E4E8">：</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> 显示当前座位的任务链编号（#1, #2, #3...）</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> 展示工作量证明历史</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> 链条断裂预警</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8;font-weight:bold"> **规则设定**</span><span style="color:#E1E4E8">：</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> 定义"最好状态"的具体标准</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> "下必为例"判例库管理</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> 违规判定与处理流程</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8;font-weight:bold"> **预约系统**</span><span style="color:#E1E4E8">：</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> 15分钟预约倒计时</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> 预约信号触发（可自定义手势、声音等）</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> 预约链独立管理</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">#### 对应页面：</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> 神圣座位列表页</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> 座位详情页</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> 任务执行页（含计时器）</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> 判例库管理页</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> 预约触发页</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">## 三、核心用户旅程</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">### </span><span style="color:#E1E4E8;font-weight:bold">**旅程1：新用户入门**</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#FFAB70">1.</span><span style="color:#E1E4E8;font-weight:bold"> **注册/登录**</span><span style="color:#E1E4E8"> → 欢迎页</span></span>
+<span class="line"><span style="color:#FFAB70">2.</span><span style="color:#E1E4E8;font-weight:bold"> **自制力评估问卷**</span><span style="color:#E1E4E8"> → 了解用户基础状态</span></span>
+<span class="line"><span style="color:#FFAB70">3.</span><span style="color:#E1E4E8;font-weight:bold"> **选择核心痛点**</span><span style="color:#E1E4E8"> → 手机成瘾/拖延症/作息混乱等</span></span>
+<span class="line"><span style="color:#FFAB70">4.</span><span style="color:#E1E4E8;font-weight:bold"> **引导创建第一个神圣座位**</span><span style="color:#E1E4E8"> → 简化版设置向导</span></span>
+<span class="line"><span style="color:#FFAB70">5.</span><span style="color:#E1E4E8;font-weight:bold"> **引导创建第一个定式**</span><span style="color:#E1E4E8"> → 从最简单的开始</span></span>
+<span class="line"><span style="color:#FFAB70">6.</span><span style="color:#E1E4E8;font-weight:bold"> **完成第一次任务**</span><span style="color:#E1E4E8"> → 获得成就感，理解机制</span></span>
+<span class="line"><span style="color:#FFAB70">7.</span><span style="color:#E1E4E8;font-weight:bold"> **查看数据反馈**</span><span style="color:#E1E4E8"> → 了解自己的进步</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">### </span><span style="color:#E1E4E8;font-weight:bold">**旅程2：日常使用（CTDP为主）**</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">## 四、页面架构</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">## 五、关键设计原则</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#FFAB70">1.</span><span style="color:#E1E4E8;font-weight:bold"> **降低认知负担**</span><span style="color:#E1E4E8">：复杂理论后置，新手引导简化</span></span>
+<span class="line"><span style="color:#FFAB70">2.</span><span style="color:#E1E4E8;font-weight:bold"> **即时反馈**</span><span style="color:#E1E4E8">：每个操作都有清晰的视觉/数据反馈</span></span>
+<span class="line"><span style="color:#FFAB70">3.</span><span style="color:#E1E4E8;font-weight:bold"> **防止过度游戏化**</span><span style="color:#E1E4E8">：避免积分、排名等外在激励</span></span>
+<span class="line"><span style="color:#FFAB70">4.</span><span style="color:#E1E4E8;font-weight:bold"> **尊重隐私**</span><span style="color:#E1E4E8">：所有数据本地优先，可选云同步</span></span>
+<span class="line"><span style="color:#FFAB70">5.</span><span style="color:#E1E4E8;font-weight:bold"> **灵活但严格**</span><span style="color:#E1E4E8">：机制可自定义，但一旦设定就强制执行</span></span>
+<span class="line"><span style="color:#FFAB70">6.</span><span style="color:#E1E4E8;font-weight:bold"> **对ADHD友好**</span><span style="color:#E1E4E8">：</span></span>
+<span class="line"><span style="color:#FFAB70">   -</span><span style="color:#E1E4E8"> 大按钮、高对比度</span></span>
+<span class="line"><span style="color:#FFAB70">   -</span><span style="color:#E1E4E8"> 最小化干扰</span></span>
+<span class="line"><span style="color:#FFAB70">   -</span><span style="color:#E1E4E8"> 支持快捷键</span></span>
+<span class="line"><span style="color:#FFAB70">   -</span><span style="color:#E1E4E8"> 分段式内容呈现</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">## 六、技术亮点</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#FFAB70">1.</span><span style="color:#E1E4E8;font-weight:bold"> **本地优先架构**</span><span style="color:#E1E4E8">：离线可用，避免依赖网络</span></span>
+<span class="line"><span style="color:#FFAB70">2.</span><span style="color:#E1E4E8;font-weight:bold"> **智能算法**</span><span style="color:#E1E4E8">：</span></span>
+<span class="line"><span style="color:#FFAB70">   -</span><span style="color:#E1E4E8"> 不可逃逸区自动识别</span></span>
+<span class="line"><span style="color:#FFAB70">   -</span><span style="color:#E1E4E8"> 定式冲突检测</span></span>
+<span class="line"><span style="color:#FFAB70">   -</span><span style="color:#E1E4E8"> 稳态评分算法</span></span>
+<span class="line"><span style="color:#FFAB70">3.</span><span style="color:#E1E4E8;font-weight:bold"> **跨平台同步**</span><span style="color:#E1E4E8">：Web数据同步</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">这个产品设计既忠实于原文的科学理论，又充分考虑了实际使用场景和用户体验，相信能真正帮助到那些与自制力问题斗争的人们。</span></span></code></pre>
+<p>最后输出的清单长这样：</p>
+<pre class="astro-code github-dark" style="color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#79B8FF;font-weight:bold"># 自律重构者 - 项目开发计划清单</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">## 阶段 1：项目初始化</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> [ ] </span><span style="color:#E1E4E8;font-weight:bold">**任务 1.1：初始化 Vue3 项目**</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> 使用 </span><span style="color:#79B8FF">`npm create vue@latest`</span><span style="color:#E1E4E8"> 创建 Vue3 项目，选择 TypeScript、Vue Router、Pinia 状态管理</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> 项目名称：attention</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> 配置选项：TypeScript、Router、Pinia、ESLint</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> [ ] </span><span style="color:#E1E4E8;font-weight:bold">**任务 1.2：安装并配置 Element Plus**</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> 运行 </span><span style="color:#79B8FF">`npm install element-plus`</span><span style="color:#E1E4E8"> 安装 Element Plus UI 组件库</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> 在 main.ts 中全局引入 Element Plus 及其样式</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> 配置自动导入插件（unplugin-vue-components 和 unplugin-auto-import）</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> [ ] </span><span style="color:#E1E4E8;font-weight:bold">**任务 1.3：配置项目基础架构**</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> 创建 src/stores 目录，用于存放 Pinia 状态管理文件</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> 创建 src/utils 目录，存放工具函数（localStorage 封装等）</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> 创建 src/types 目录，存放 TypeScript 类型定义</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> 创建 src/composables 目录，存放可复用的组合式函数</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">---</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">## 阶段 2：核心数据模型设计</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">## 阶段 3：**</span></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">---</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">## 注意事项</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> 每个任务完成后，运行 </span><span style="color:#79B8FF">`npm run typecheck`</span><span style="color:#E1E4E8"> 确保没有类型错误</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> 定期提交代码到 Git，保持版本控制</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> 优先开发 P0 和 P1 功能，确保 MVP 快速上线</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> 保持代码简洁和可维护性，使用 ESLint 检查代码规范</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> 所有用户数据使用 localStorage 存储，确保数据隐私和安全</span></span></code></pre>
+<p>‍</p>
+<p><strong>交叉检验你的计划：</strong></p>
+<p>•将你刚生成的 <code>PLAN.md</code> 粘贴到另一个 AI（如 Gemini）中。•问它：“这份计划是由另一个 AI 编写的。作为一名挑剔的资深工程师，你看到了哪些潜在问题或风险？”•这有助于你发现单个模型可能存在的盲点，从而优化你的计划清单</p>
+<h3 id="24-代码开发">2.4 代码开发</h3>
+<h4 id="241-规则文件">2.4.1 <strong>规则文件：</strong></h4>
+<p>在 2.4 生成计划清单的时候我已经准备了下面的几个文件：</p>
+<ol>
+<li>
+<p><strong>核心规则手册 (CLAUDE.md):</strong>  在你的项目根目录中创建此文件。</p>
+<p>将最重要的规则放在最顶端。<strong>内容示例：</strong></p>
+<ul>
+<li>
+<p>使用 ES 模块语法（<code>import/export</code>​），而非 CommonJS（<code>require</code>）</p>
+</li>
+<li>
+<p>尽可能使用解构导入（例如：<code>import { foo } from 'bar'</code>）</p>
+</li>
+<li>
+<p>完成一系列代码修改后，务必进行类型检查</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>“外部大脑” (memory-bank/ 文件夹):</strong>  这是最关键的部分。创建一个名为 <code>memory-bank</code> 的文件夹。</p>
+</li>
+</ol>
+<p>•在其中创建以下文件（从简单开始，逐步填充）：</p>
+<p>•<strong>projectbrief.md:</strong>  项目的描述。</p>
+<p>•<strong>techContext.md:</strong>  你正在使用的技术栈和版本（项目技术栈： VUE3, npm, UI 组件库：Element Plus, 用户产生的数据使用浏览器的 localStorage 保存）。</p>
+<p>•<strong>systemPatterns.md:</strong>  你的架构和设计模式。</p>
+<p>•<strong>activeContext.md:</strong>  这是“当前记忆”。它追踪你<strong>当下</strong>正在做什么以及下一步计划。</p>
+<p>•<strong>progress.md:</strong>  整体项目进度。记录已完成和未完成的部分。</p>
+<h4 id="242-代码开发">2.4.2 代码开发</h4>
+<p>接下来代码开发就比较简单了，根据前面的生成的计划清单，让 Claude code 执行每个子任务，需要注意的是让 Claude code 执行任务时，采用小步快走的方式，让 AI 以一个个最小的功能单元去写代码，写完成后最好让他自己执行编译检查，必要时需要启动服务，检查是否有语法错误、运行错误，小步快走能让 AI 及时发现问题进行改进。</p>
+<p><img src="https://s2.loli.net/2025/10/12/L9yRHNlBs1ZtVap.png" alt="image"></p>
+<p>‍</p>
+<p>最后我用了 4 小时，花费 30￥，生成 68 个文件， 16585 行代码。</p>
+<p><img src="https://s2.loli.net/2025/10/12/oPBj87zJgAZE9eY.png" alt="image"></p>
+<p>消费记录</p>
+<p><img src="https://s2.loli.net/2025/10/12/leRhLgm6vObqMzJ.png" alt="image"></p>
+<p>期间我一共介入了 2 次修改代码，一次是生成的代码缺少分号，导致运行失败，这个问题是比较低级的错误，Claude code 竟然犯了这种错误；还有一次是生成的页面样式不正确，主页不能铺满全屏，我提示它进行修改，但它始终修改不正确，这类界面样式问题对它来说确实不好处理，后面看看能不能通过 MCP 让它自己到浏览器中去检查、调试</p>
+<h3 id="25-实现效果">2.5 实现效果</h3>
+<p>整体实现的完成度还是挺高的，整个功能流程是能打通的。不过发现了在某个下钻功能里，没有实现完整的功能，看了一下，主要还是需求没有考虑到这点，AI 实现的时候也只是实现了个假按钮，这也侧面说明了让 AI 做事，得把需求写清晰。</p>
+<p>体验地址：<a href="http://47.94.5.222/">首页 - 自律重构者</a></p>
+<p>‍</p>
+<p><img src="https://s2.loli.net/2025/10/12/RqCoBD9pfrYtyzj.png" alt="image"></p>
+<p>‍</p>
+<h2 id="3-claude-使用技巧">3 Claude 使用技巧</h2>
+<p>‍</p>
+<p><strong>将 Claude Code 视为一位才华横溢但健忘的专家。</strong>  它能力超群，但每隔几分钟就会忘记你是谁、你在做什么。你最重要的工作就是为它构建一个完美的“外部大脑”，让它能随时“恢复记忆”并投入工作。</p>
+<hr>
+<h4 id="阶段-0准备你的环境"><strong>阶段 0：准备你的环境</strong></h4>
+<p>在编写第一个提示之前，请先配置好你的工作区，为成功奠定基础。</p>
+<p><strong>[1] 核心规则手册 (CLAUDE.md):</strong>  在你的项目根目录中创建此文件。</p>
+<p>•<strong>保持简洁。</strong>  将最重要的规则放在最顶端。•<strong>核心内容示例：</strong></p>
+<p>•“开发必须遵循 TDD（测试驱动开发）方法论。”•“所有实现必须严格遵循 PLAN.md 中概述的步骤。”•“我们的主要技术栈是 [React, FastAPI, PostgreSQL]。除非计划中特别指明，否则不要引入其他库。”</p>
+<p><strong>[2] “外部大脑” (memory-bank/ 文件夹):</strong>  这是最关键的部分。创建一个名为 <code>memory-bank</code> 的文件夹。</p>
+<p>•在其中创建以下文件（从简单开始，逐步填充）：</p>
+<p>•<strong>projectbrief.md:</strong>  项目的一句话描述（例如：“一个任务管理应用程序的后端服务。”）。•<strong>techContext.md:</strong>  你正在使用的技术栈和版本（例如：“Python 3.11, FastAPI, Pydantic, pytest”）。•<strong>systemPatterns.md:</strong>  你的架构和设计模式（例如：“使用三层架构：API 层、服务层、数据层。”）。•<strong>activeContext.md:</strong>  这是“当前记忆”。它追踪你<strong>当下</strong>正在做什么以及下一步计划。•<strong>progress.md:</strong>  整体项目进度。记录已完成和未完成的部分。</p>
+<p><strong>[3] 赋予 Claude “手和脚” (安装 MCP 服务器 - 可选但推荐):</strong></p>
+<p>•像 Serena 或 zen-mcp 这样的工具，可以让 Claude 直接与你的本地机器交互（读/写文件、运行代码、执行 git 命令）。•这能将 AI 的能力提升到一个新的水平。</p>
+<hr>
+<h4 id="阶段-1无懈可击的蓝图规划"><strong>阶段 1：无懈可击的蓝图（规划）</strong></h4>
+<p>你在规划上节省的每一分钟，都将以十倍的调试时间偿还。</p>
+<p><strong>[4] “清单驱动”的计划 (PLAN.md):</strong></p>
+<p>•这是核心技巧。告诉 Claude 你的“​<strong>初始状态</strong>​”和“​<strong>最终状态</strong>​”，然后让它生成一个 <code>PLAN.md</code>​ 文件。•<strong>格式是不可协商的：</strong>  它必须是一个 Markdown 清单，其中​<strong>每一项都是一个完整、可执行的、用于 AI 下一步操作的提示</strong>​。•<strong>示例</strong> <strong>​<code>PLAN.md</code>​</strong>​ <strong>：</strong></p>
+<pre class="astro-code github-dark" style="color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Prompt: "在文件 `models/task.py` 中，为 'Task' 创建 Pydantic 数据模型，包含 id、title、description 和 is_completed 字段。"</span></span>
+<span class="line"><span>Prompt: "在 `database/crud.py` 中，编写创建新任务并将其保存到数据库的函数。"</span></span>
+<span class="line"><span>Prompt: "为'创建新任务'函数编写一个失败的单元测试，并保存在 `tests/test_crud.py` 中。"</span></span></code></pre>
+<p><strong>[5] 交叉检验你的计划：</strong></p>
+<p>•将你刚生成的 <code>PLAN.md</code> 粘贴到另一个 AI（如 Gemini）中。•问它：“这份计划是由另一个 AI 编写的。作为一名挑剔的资深工程师，你看到了哪些潜在问题或风险？”•这有助于你发现单个模型可能存在的盲点。</p>
+<hr>
+<h4 id="阶段-2迭代构建实施"><strong>阶段 2：迭代构建（实施）</strong></h4>
+<p>小步快跑，持续验证。</p>
+<p><strong>[6] 一次只做一件事：</strong></p>
+<p>•严格遵循你的 <code>PLAN.md</code>。复制第一个未完成的任务并将其粘贴给 Claude。</p>
+<p><strong>[7] 做一个“审查者”，而不是“聊天伙伴”：</strong></p>
+<p>•当 AI 完成一项任务时，像审查初级开发人员的 Pull Request 一样审查它的代码。•<strong>如果代码 95% 完美：</strong>  接受它，然后自己进行微调。•<strong>如果代码有明显缺陷：</strong>  <strong>不要</strong>试图通过对话来修复它，这会污染上下文。应该​<strong>完全拒绝这次变更</strong>​，回去<strong>修正你的</strong> <strong>​<code>PLAN.md</code>​</strong> 使其更具体，然后让它基于改进后的计划重试该步骤。</p>
+<p><strong>[8] 频繁提交你的进度：</strong></p>
+<p>•一旦一小部分功能正常工作，立即用 Git <strong>提交</strong>它。这能锁定你的进度，并在 AI 稍后犯错时让你能轻松回滚。</p>
+<p><strong>[9] 使用“魔法词”：</strong></p>
+<p>•<strong>ultrathink:</strong>  在要求进行复杂规划或分析时，将这个词添加到提示的末尾。•<strong>sub-task with agents:</strong>  当需要它一次性读写多个文件以加快速度时，添加这个指令。</p>
+<p><strong>[10] UI 优先，逻辑其次：</strong></p>
+<p>•对于有用户界面的应用程序，一个很好的策略是先让 Claude 用虚拟数据构建 UI。一旦你对外观和感觉满意，再让它实现后端逻辑。（笔者注: 或者是逻辑优先，优先设计后端功能和接口，这样不会重新生成 UI 代码）</p>
+<hr>
+<h4 id="阶段-3会话管理"><strong>阶段 3：会话管理</strong></h4>
+<p>确保你那健忘的专家总能找到回家的路。</p>
+<p><strong>[11] 干净地开始和结束会话：</strong></p>
+<p>•<strong>结束会话前：</strong>  总是告诉 Claude：“请更新 <code>activeContext.md</code>​ 和 <code>progress.md</code>​，总结我们完成的工作并概述后续步骤。”•<strong>开始新会话时：</strong>  你的第一个提示应该总是：“你好，让我们继续项目。请先阅读 <code>CLAUDE.md</code>​ 和 <code>memory-bank/</code> 文件夹中的所有文件，以全面了解当前的项目状态。”</p>
+<p><strong>[12] 关注“上下文”条：</strong></p>
+<p>•这个指示条显示了 AI 还剩下多少“记忆”。•一旦超过 50%，性能就会下降。使用 <code>/compact</code> 命令，并立即重新陈述当前任务，以帮助它重新集中注意力。</p>  </div> <div class="next-posts"> <h2>其他文章</h2> <div class="post-list"> <a class="post-row" href="/posts/claude-code-best-practices/"> <time datetime="2025-10-07T09:21:02.000Z">2025年10月7日</time> <span class="post-main"> <span class="post-title">Claude Code 最佳实践（官方）</span> <span class="post-excerpt">这是关于 Claude Code 最佳实践。本文将分享我使用 Claude 的一些心得和技巧。</span> </span> <span class="post-go">阅读</span> </a> </div> </div> </article> <details class="toc" data-toc><summary>目录</summary><ol><li data-depth="2"><a href="#claude使用体验">Claude使用体验</a></li><li data-depth="3"><a href="#简介">简介</a></li><li data-depth="2"><a href="#引言">引言</a></li><li data-depth="2"><a href="#1-claude-是什么">1. Claude 是什么</a></li><li data-depth="2"><a href="#2-使用-claude-开发一个项目">2. 使用 Claude 开发一个项目</a></li><li data-depth="3"><a href="#21-claude-资源获取">2.1 Claude 资源获取</a></li><li data-depth="3"><a href="#22-claude-安装">2.2 Claude 安装</a></li><li data-depth="4"><a href="#windows-版本教程">Windows 版本教程</a></li><li data-depth="3"><a href="#23-需求分析">2.3 需求分析</a></li><li data-depth="3"><a href="#24-代码开发">2.4 代码开发</a></li><li data-depth="4"><a href="#241-规则文件">2.4.1 规则文件：</a></li><li data-depth="4"><a href="#242-代码开发">2.4.2 代码开发</a></li><li data-depth="3"><a href="#25-实现效果">2.5 实现效果</a></li><li data-depth="2"><a href="#3-claude-使用技巧">3 Claude 使用技巧</a></li><li data-depth="4"><a href="#阶段-0准备你的环境">阶段 0：准备你的环境</a></li><li data-depth="4"><a href="#阶段-1无懈可击的蓝图规划">阶段 1：无懈可击的蓝图（规划）</a></li><li data-depth="4"><a href="#阶段-2迭代构建实施">阶段 2：迭代构建（实施）</a></li><li data-depth="4"><a href="#阶段-3会话管理">阶段 3：会话管理</a></li></ol></details> </div> </main>  <footer class="footer"> <div class="wrap footer-row"> <p>© 2025–2026 一课一练 / wangxi-lab</p> <nav class="footer-links" aria-label="页脚"> <a href="/posts/">文章</a> <a href="/#about">关于</a> <a href="https://github.com/wangxi-lab" target="_blank" rel="noreferrer noopener">GitHub</a> <a href="mailto:wx_youx@163.com">邮箱</a> </nav> </div> </footer> </div> <button class="to-top" type="button" data-top hidden>回到顶部</button> <script type="module">function a(){const e=document.querySelector("[data-theme-toggle]"),t=document.documentElement,o=n=>{t.setAttribute("data-theme",n),e?.setAttribute("aria-label",n==="light"?"切换深色":"切换浅色"),e?.setAttribute("aria-pressed",String(n==="light"))};o(t.getAttribute("data-theme")==="light"?"light":"dark"),e?.addEventListener("click",()=>{const n=t.getAttribute("data-theme")==="light"?"dark":"light";o(n);try{localStorage.setItem("theme",n)}catch{}})}function s(){const e=document.querySelector("[data-nav]"),t=document.querySelector("[data-nav-toggle]");if(!e||!t)return;const o=()=>{e.classList.remove("is-open"),t.setAttribute("aria-expanded","false"),t.setAttribute("aria-label","打开菜单")};t.addEventListener("click",()=>{const i=e.classList.toggle("is-open");t.setAttribute("aria-expanded",String(i)),t.setAttribute("aria-label",i?"关闭菜单":"打开菜单")}),e.querySelectorAll("a").forEach(i=>i.addEventListener("click",o)),document.addEventListener("keydown",i=>{i.key==="Escape"&&o()});const n=()=>e.classList.toggle("is-scrolled",window.scrollY>8);n(),window.addEventListener("scroll",n,{passive:!0})}function l(){const e=[...document.querySelectorAll("main section[id]")];if(!e.length)return;const t=[...document.querySelectorAll("[data-nav-link]")],o=new IntersectionObserver(n=>{const i=n.filter(r=>r.isIntersecting).sort((r,c)=>c.intersectionRatio-r.intersectionRatio)[0];if(i)for(const r of t){const c=r.hash===`#${i.target.id}`;r.classList.toggle("is-active",c),c?r.setAttribute("aria-current","true"):r.removeAttribute("aria-current")}},{rootMargin:"-45% 0px -45% 0px",threshold:[.15,.4]});e.forEach(n=>o.observe(n))}function d(){const e=document.querySelector("[data-toc]");if(!e)return;const t=window.matchMedia("(min-width: 901px)"),o=()=>{e.open=t.matches};o(),t.addEventListener("change",o)}function u(){document.querySelectorAll(".prose pre").forEach(e=>{if(e.querySelector("[data-copy]"))return;const t=document.createElement("button");t.type="button",t.className="copy",t.dataset.copy="",t.textContent="复制",t.addEventListener("click",async()=>{const o=e.querySelector("code")?.textContent??"";try{await navigator.clipboard.writeText(o),t.textContent="已复制"}catch{t.textContent="复制失败"}window.setTimeout(()=>{t.textContent="复制"},1600)}),e.append(t)})}function g(){const e=document.querySelector("[data-top]");if(!e)return;const t=()=>{e.hidden=window.scrollY<700};t(),window.addEventListener("scroll",t,{passive:!0}),e.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}))}a();s();l();d();u();g();</script> </body> </html>
