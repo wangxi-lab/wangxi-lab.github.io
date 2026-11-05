@@ -84,7 +84,6 @@ Claude 当前对中国地区进行封禁，国内有很多大模型中转站，�
 
 下载后双击安装，之后一直点击下一步。安装完成后，打开 CMD 窗口，执行命令验证安装：
 
-CMD 复制
 
 ```
 node -v
@@ -94,7 +93,6 @@ node -v
 
 打开命令提示符 (CMD) 或 PowerShell，运行：
 
-CMD/PowerShell 复制
 
 ```
 npm install -g @anthropic-ai/claude-code
@@ -102,7 +100,6 @@ npm install -g @anthropic-ai/claude-code
 
 #### 3. 验证安装
 
-CMD/PowerShell 复制
 
 ```
 claude --version
@@ -137,7 +134,6 @@ claude --version
 
 ###### 方法二：PowerShell（永久设置）
 
-PowerShell 复制
 
 ```
 [Environment]::SetEnvironmentVariable("ANTHROPIC_AUTH_TOKEN", "sk-xxx", "User")
@@ -146,7 +142,6 @@ PowerShell 复制
 
 ###### 方法三：命令提示符（永久设置）
 
-CMD 复制
 
 ```
 setx ANTHROPIC_AUTH_TOKEN "sk-xxx"
@@ -159,7 +154,6 @@ setx ANTHROPIC_BASE_URL "https://jp.duckcoding.com"
 
 配置完成后，先进入到工程目录：
 
-CMD/PowerShell 复制
 
 ```
 cd your-project-folder
@@ -167,7 +161,6 @@ cd your-project-folder
 
 然后，运行以下命令启动：
 
-CMD/PowerShell 复制
 
 ```
 claude

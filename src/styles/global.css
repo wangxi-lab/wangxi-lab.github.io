@@ -148,6 +148,14 @@ button {
 .page {
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.page > main {
+  flex: 1 0 auto;
 }
 
 .wrap {
@@ -406,6 +414,7 @@ section[id],
   color: var(--violet);
 }
 
+.section-head h1,
 .section-head h2,
 .page-title {
   margin: 0;
@@ -850,13 +859,18 @@ section[id],
   background: color-mix(in srgb, var(--cyan) 12%, transparent);
 }
 
+.prose pre,
+.prose pre code {
+  background: var(--code) !important;
+  background-color: var(--code) !important;
+}
+
 .prose pre {
   position: relative;
   margin: 1.1em 0;
   padding: 2.4rem 1rem 1rem;
   border-radius: 12px;
   border: 1px solid var(--border);
-  background: var(--code) !important;
   overflow-x: auto;
   line-height: 1.6;
 }
@@ -926,8 +940,8 @@ section[id],
   color: var(--text);
 }
 
-.toc li[data-depth='2'] a { padding-left: 10px; }
-.toc li[data-depth='3'] a { padding-left: 18px; }
+.toc li[data-depth='3'] a { padding-left: 10px; }
+.toc li[data-depth='4'] a { padding-left: 18px; }
 
 .next-posts {
   margin-top: 40px;

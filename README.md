@@ -45,5 +45,6 @@ Pull Request 只跑构建，不部署。GitHub Pages 需要继续使用 `gh-page
 
 - `/post/claude-experience-13bcx1.html` → `/posts/claude-experience/`
 - `/post/claude-code-best-practices-official-qedrk.html` → `/posts/claude-code-best-practices/`
-- `/about/` → `/#about`
-- `/archives/`、`/tags/`、`/categories/` → `/posts/`
+- `/about` 与 `/about/` → `/#about`
+- `/archives`、`/tags`、`/categories` 会先补上结尾斜杠，再进 `/posts/`
+- `/posts` → `/posts/`

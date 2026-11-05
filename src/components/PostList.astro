@@ -10,6 +10,7 @@ interface Props {
   title?: string;
   description?: string;
   showAll?: boolean;
+  heading?: 'h1' | 'h2';
 }
 
 const {
@@ -18,13 +19,14 @@ const {
   title = '笔记',
   description = '目前两篇，全文都在。',
   showAll = true,
+  heading = 'h2',
 } = Astro.props;
 const headingId = anchor ? `${anchor}-title` : 'list-title';
 ---
 
 <section class="band" id={anchor || undefined} aria-labelledby={headingId}>
   <div class="wrap">
-    <SectionHeader eyebrow="文章" headingId={headingId} title={title} description={description} />
+    <SectionHeader eyebrow="文章" headingId={headingId} title={title} description={description} level={heading} />
     <div class="post-list">
       {posts.map((post) => <PostCard post={post} />)}
     </div>

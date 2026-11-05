@@ -9,7 +9,7 @@ interface Props {
   headings: Heading[];
 }
 
-const items = Astro.props.headings.filter((heading) => heading.depth >= 1 && heading.depth <= 3);
+const items = Astro.props.headings.filter((heading) => heading.depth >= 2 && heading.depth <= 4);
 ---
 
 {

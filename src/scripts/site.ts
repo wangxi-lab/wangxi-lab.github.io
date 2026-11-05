@@ -1,9 +1,5 @@
 type Theme = 'light' | 'dark';
 
-function preferredTheme(): Theme {
-  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-}
-
 function initTheme() {
   const button = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
   const root = document.documentElement;
@@ -24,17 +20,6 @@ function initTheme() {
     } catch {
       /* ignore private mode */
     }
-  });
-
-  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => {
-    let stored: string | null = null;
-    try {
-      stored = localStorage.getItem('theme');
-    } catch {
-      stored = 'dark';
-    }
-    if (stored === 'light' || stored === 'dark') return;
-    paint(preferredTheme());
   });
 }
 
