@@ -1,0 +1,40 @@
+---
+import SectionHeader from './SectionHeader.astro';
+import { site } from '../data/site';
+---
+
+<section class="band" id="about" aria-labelledby="about-title">
+  <div class="wrap">
+    <SectionHeader
+      eyebrow="关于"
+      headingId="about-title"
+      title={site.name}
+      description={`${site.handle} · ${site.person}`}
+    />
+    <div class="about-panel">
+      <div class="about-copy">
+        <p>
+          我是{site.name}，GitHub 上是 {site.person} / {site.handle}，做{site.role}。兴趣是{site.interests.join('和')}。
+        </p>
+        <p>
+          这个站用来记下 AI 与 Claude 的用法，一次看一课。GitHub 简介是：{site.bio}。
+        </p>
+        <p>关注方向是{site.focuses.join('、')}。</p>
+      </div>
+      <dl class="about-facts">
+        <div>
+          <dt>角色</dt>
+          <dd>{site.role}</dd>
+        </div>
+        <div>
+          <dt>GitHub</dt>
+          <dd><a href={site.github} target="_blank" rel="noreferrer noopener">{site.handle}</a></dd>
+        </div>
+        <div>
+          <dt>邮箱</dt>
+          <dd><a href={`mailto:${site.email}`}>{site.email}</a></dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>

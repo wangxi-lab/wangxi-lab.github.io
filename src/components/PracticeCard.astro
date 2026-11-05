@@ -1,0 +1,22 @@
+---
+import type { Practice } from '../data/practice';
+
+interface Props {
+  item: Practice;
+}
+
+const { item } = Astro.props;
+---
+
+<a class="practice-card" href={item.href}>
+  <div class="practice-top">
+    <span class:list={['level', { 'is-advanced': item.level === '进阶' }]}>{item.level}</span>
+    <span class="mins">约 {item.minutes} 分钟</span>
+  </div>
+  <h3>{item.title}</h3>
+  <p>{item.note}</p>
+  <p class="source">{item.source}</p>
+  <ul class="chips">
+    {item.tags.map((tag) => <li>{tag}</li>)}
+  </ul>
+</a>

@@ -1,0 +1,35 @@
+---
+import { practice } from '../data/practice';
+import { site } from '../data/site';
+
+const preview = practice.slice(0, 3);
+---
+
+<section class="hero" id="hero" aria-labelledby="hero-title">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="hero-sub">
+        <em>wangxi-lab</em><span> · AI 与技术实践</span>
+      </p>
+      <h1 id="hero-title">{site.name}</h1>
+      <p class="lead">{site.lead}</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#practice">开始一课</a>
+        <a class="btn btn-ghost" href="#writing">读文章</a>
+      </div>
+    </div>
+    <aside class="hero-board" aria-hidden="true">
+      <p>练习单</p>
+      <ol>
+        {
+          preview.map((item, index) => (
+            <li>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <span>{item.title}</span>
+            </li>
+          ))
+        }
+      </ol>
+    </aside>
+  </div>
+</section>

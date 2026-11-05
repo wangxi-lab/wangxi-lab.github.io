@@ -1,0 +1,19 @@
+---
+import { practice } from '../data/practice';
+import PracticeCard from './PracticeCard.astro';
+import SectionHeader from './SectionHeader.astro';
+---
+
+<section class="band" id="practice" aria-labelledby="practice-title">
+  <div class="wrap">
+    <SectionHeader
+      eyebrow="一课"
+      headingId="practice-title"
+      title="一课一练"
+      description="从两篇 Claude 笔记里拆出的小节。点进去还是原文，可以跟着读。"
+    />
+    <div class="practice-grid">
+      {practice.map((item) => <PracticeCard item={item} />)}
+    </div>
+  </div>
+</section>

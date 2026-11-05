@@ -1,0 +1,28 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+}
+
+const items = Astro.props.headings.filter((heading) => heading.depth >= 2 && heading.depth <= 4);
+---
+
+{
+  items.length > 0 && (
+    <details class="toc" data-toc>
+      <summary>目录</summary>
+      <ol>
+        {items.map((heading) => (
+          <li data-depth={heading.depth}>
+            <a href={`#${heading.slug}`}>{heading.text}</a>
+          </li>
+        ))}
+      </ol>
+    </details>
+  )
+}

@@ -1,0 +1,20 @@
+---
+import { projects } from '../data/projects';
+import { site } from '../data/site';
+import ProjectCard from './ProjectCard.astro';
+import SectionHeader from './SectionHeader.astro';
+---
+
+<section class="band" id="lab" aria-labelledby="lab-title">
+  <div class="wrap">
+    <SectionHeader
+      eyebrow="实验室"
+      headingId="lab-title"
+      title="项目"
+      description={`公开仓库，以及笔记里提到的演示。更多在 GitHub ${site.handle}。`}
+    />
+    <div class="rail">
+      {projects.map((item) => <ProjectCard item={item} />)}
+    </div>
+  </div>
+</section>

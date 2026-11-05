@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import PostList from '../../components/PostList.astro';
+import SiteShell from '../../layouts/SiteShell.astro';
+import { readingMinutes, site, type PostSummary } from '../../data/site';
+
+const posts: PostSummary[] = (await getCollection('posts'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .map((post) => ({
+    title: post.data.title,
+    href: `/posts/${post.id}/`,
+    date: post.data.date,
+    minutes: readingMinutes(post.body),
+    category: post.data.categories[0] ?? '笔记',
+    excerpt: post.data.excerpt,
+  }));
+---
+
+<SiteShell title={`全部文章 · ${site.name}`} description="Claude 与 AI 编码笔记。" path="/posts/" active="writing">
+  <main id="main">
+    <PostList
+      posts={posts}
+      anchor={false}
+      title="全部文章"
+      description="从原来的博客迁过来的两篇全文。"
+      showAll={false}
+      heading="h1"
+    />
+  </main>
+</SiteShell>

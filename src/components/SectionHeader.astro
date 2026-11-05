@@ -1,0 +1,18 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  description?: string;
+  headingId: string;
+  level?: 'h1' | 'h2';
+}
+
+const { eyebrow, title, description, headingId, level = 'h2' } = Astro.props;
+const Tag = level;
+---
+
+<header class="section-head">
+  <p class="eyebrow">{eyebrow}</p>
+  <Tag id={headingId}>{title}</Tag>
+  {description && <p class="section-desc">{description}</p>}
+</header>
