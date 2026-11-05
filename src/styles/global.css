@@ -960,10 +960,11 @@ section[id],
   padding: 72px 0 96px;
 }
 
-.missing {
+main.missing {
   display: grid;
   gap: 8px;
-  align-content: start;
+  align-content: end;
+  padding: 32px 0 12px;
 }
 
 .missing .page-title {
