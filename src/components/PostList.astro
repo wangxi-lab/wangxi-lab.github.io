@@ -1,0 +1,33 @@
+---
+import PostCard from './PostCard.astro';
+import SectionHeader from './SectionHeader.astro';
+import type { PostSummary } from '../data/site';
+
+interface Props {
+  posts: PostSummary[];
+  /** Section anchor. Pass false on standalone pages so the nav spy does not clear the current item. */
+  anchor?: string | false;
+  title?: string;
+  description?: string;
+  showAll?: boolean;
+}
+
+const {
+  posts,
+  anchor = 'writing',
+  title = '笔记',
+  description = '目前两篇，全文都在。',
+  showAll = true,
+} = Astro.props;
+const headingId = anchor ? `${anchor}-title` : 'list-title';
+---
+
+<section class="band" id={anchor || undefined} aria-labelledby={headingId}>
+  <div class="wrap">
+    <SectionHeader eyebrow="文章" headingId={headingId} title={title} description={description} />
+    <div class="post-list">
+      {posts.map((post) => <PostCard post={post} />)}
+    </div>
+    {showAll && <a class="all-link" href="/posts/">全部文章</a>}
+  </div>
+</section>

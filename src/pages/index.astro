@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+import AboutPanel from '../components/AboutPanel.astro';
+import Hero from '../components/Hero.astro';
+import PostList from '../components/PostList.astro';
+import PracticeGrid from '../components/PracticeGrid.astro';
+import ProjectRail from '../components/ProjectRail.astro';
+import SiteShell from '../layouts/SiteShell.astro';
+import { readingMinutes, site, type PostSummary } from '../data/site';
+
+const posts: PostSummary[] = (await getCollection('posts'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .map((post) => ({
+    title: post.data.title,
+    href: `/posts/${post.id}/`,
+    date: post.data.date,
+    minutes: readingMinutes(post.body),
+    category: post.data.categories[0] ?? '笔记',
+    excerpt: post.data.excerpt,
+  }));
+---
+
+<SiteShell title={site.title} description={site.description} path="/" ambient>
+  <main id="main">
+    <Hero />
+    <PracticeGrid />
+    <PostList posts={posts} />
+    <ProjectRail />
+    <AboutPanel />
+  </main>
+</SiteShell>

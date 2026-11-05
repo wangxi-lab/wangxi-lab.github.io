@@ -1,0 +1,39 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import { nav, site } from '../data/site';
+
+interface Props {
+  active?: string;
+}
+
+const { active } = Astro.props;
+---
+
+<header class="nav" data-nav>
+  <a class="brand" href="/">
+    <img src="/favicon.svg" width="26" height="26" alt="" />
+    <span>{site.name}</span>
+  </a>
+  <nav class="nav-links" aria-label="页内导航">
+    {
+      nav.map((item) => (
+        <a
+          href={item.href}
+          data-nav-link
+          class:list={[{ 'is-active': active === item.id }]}
+          aria-current={active === item.id ? 'page' : undefined}
+        >
+          {item.label}
+        </a>
+      ))
+    }
+  </nav>
+  <div class="nav-tools">
+    <ThemeToggle />
+    <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="打开菜单">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>

@@ -1,0 +1,16 @@
+---
+import SiteShell from '../layouts/SiteShell.astro';
+import { site } from '../data/site';
+---
+
+<SiteShell title={`页面不存在 · ${site.name}`} description="这个地址没有对应的页面。" path="/404.html">
+  <main id="main" class="wrap page-narrow missing">
+    <p class="eyebrow">404</p>
+    <h1 class="page-title">没有这个页面</h1>
+    <p class="section-desc">回到首页，或直接去看文章。</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="/">回首页</a>
+      <a class="btn btn-ghost" href="/posts/">看文章</a>
+    </div>
+  </main>
+</SiteShell>

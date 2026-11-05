@@ -1,0 +1,97 @@
+---
+import '@fontsource/inter/latin-400.css';
+import '@fontsource/inter/latin-500.css';
+import '@fontsource/inter/latin-600.css';
+import '@fontsource/instrument-serif/latin-400-italic.css';
+import '@fontsource/jetbrains-mono/latin-400.css';
+import '@fontsource/jetbrains-mono/latin-500.css';
+import '../styles/global.css';
+import NoiseOverlay from '../components/NoiseOverlay.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import TopNav from '../components/TopNav.astro';
+import { site } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+  active?: string;
+  ambient?: boolean;
+  ogType?: 'website' | 'article';
+  jsonLd?: Record<string, unknown>;
+}
+
+const {
+  title,
+  description,
+  path = '/',
+  active,
+  ambient = false,
+  ogType = 'website',
+  jsonLd,
+} = Astro.props;
+
+const canonical = new URL(path, Astro.site);
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  alternateName: [site.person, site.handle],
+  url: site.url,
+  email: site.email,
+  jobTitle: site.role,
+  sameAs: [site.github],
+};
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={site.name} />
+    <meta name="theme-color" content="#070A12" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="zh_CN" />
+    <meta name="twitter:card" content="summary" />
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var theme =
+            stored === 'light' || stored === 'dark'
+              ? stored
+              : window.matchMedia('(prefers-color-scheme: light)').matches
+                ? 'light'
+                : 'dark';
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (error) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd ?? personLd)} />
+  </head>
+  <body>
+    <a class="skip" href="#main">跳到正文</a>
+    {ambient && <NoiseOverlay />}
+    <div class="page">
+      <TopNav active={active} />
+      <slot />
+      <SiteFooter />
+    </div>
+    <button class="to-top" type="button" data-top hidden>回到顶部</button>
+    <script>
+      import '../scripts/site.ts';
+    </script>
+  </body>
+</html>

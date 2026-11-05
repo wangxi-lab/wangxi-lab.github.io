@@ -1,0 +1,29 @@
+---
+import type { Project } from '../data/projects';
+
+interface Props {
+  item: Project;
+}
+
+const { item } = Astro.props;
+const external = item.href.startsWith('http');
+---
+
+<article class="project-card">
+  <p class="repo-meta">{item.kicker}</p>
+  <h3>{item.name}</h3>
+  <p>{item.blurb}</p>
+  {
+    item.stack.length > 0 && (
+      <ul class="chips">
+        {item.stack.map((chip) => <li>{chip}</li>)}
+      </ul>
+    )
+  }
+  <div class="project-links">
+    <a href={item.href} target={external ? '_blank' : undefined} rel={external ? 'noreferrer noopener' : undefined}>
+      {item.linkLabel}
+    </a>
+    {item.secondary && <a href={item.secondary.href}>{item.secondary.label}</a>}
+  </div>
+</article>
